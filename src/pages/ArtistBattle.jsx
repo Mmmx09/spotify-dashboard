@@ -178,8 +178,8 @@ export default function ArtistBattle({ data }) {
               <div className="card-sub">5 audio dimensions compared head-to-head</div>
               <ResponsiveContainer width="100%" height={300}>
                 <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="70%">
-                  <PolarGrid stroke="#1a1a1a" />
-                  <PolarAngleAxis dataKey="metric" tick={{ fill: "#888", fontSize: 12 }} />
+                  <PolarGrid stroke="#2a2a2a" />
+                  <PolarAngleAxis dataKey="metric" tick={{ fill: "#aaa", fontSize: 12 }} />
                   <Radar
                     name={artistA.primary_artist}
                     dataKey={artistA.primary_artist}
@@ -200,9 +200,9 @@ export default function ArtistBattle({ data }) {
               <div className="card-sub">Percentage score per audio dimension</div>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={barData} margin={{ left: 0, right: 10, top: 10, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1a1a1a" vertical={false} />
-                  <XAxis dataKey="name" tick={{ fill: "#888", fontSize: 10 }} />
-                  <YAxis tick={{ fill: "#666", fontSize: 10 }} domain={[0, 100]} unit="%" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#252525" vertical={false} />
+                  <XAxis dataKey="name" tick={{ fill: "#aaa", fontSize: 10 }} axisLine={{ stroke: "#333" }} />
+                  <YAxis tick={{ fill: "#888", fontSize: 10 }} domain={[0, 100]} unit="%" axisLine={false} tickLine={false} />
                   <Tooltip content={<CustomTooltip />} />
                   <Bar dataKey={artistA.primary_artist} fill={GREEN} radius={[4,4,0,0]} />
                   <Bar dataKey={artistB.primary_artist} fill={BLUE} radius={[4,4,0,0]} />
@@ -230,15 +230,15 @@ export default function ArtistBattle({ data }) {
                   ["Avg Tempo", `${artistA.avg_tempo.toFixed(0)} BPM`],
                   ["Avg Mood (Valence)", `${(artistA.avg_valence * 100).toFixed(0)}%`],
                 ].map(([k, v]) => (
-                  <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "7px 0", borderBottom: "1px solid #111", fontSize: 12 }}>
-                    <span style={{ color: "#666" }}>{k}</span>
-                    <span style={{ color: "#f0f0f0", maxWidth: 160, textAlign: "right", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{v}</span>
+                  <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "9px 0", borderBottom: "1px solid #1e1e1e", fontSize: 12 }}>
+                    <span style={{ color: "#909090" }}>{k}</span>
+                    <span style={{ color: "#f2f2f2", maxWidth: 160, textAlign: "right", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{v}</span>
                   </div>
                 ))}
               </div>
 
               {/* Center divider */}
-              <div style={{ width: 1, background: "#222", alignSelf: "stretch", margin: "0 8px" }} />
+              <div style={{ width: 1, background: "#2a2a2a", alignSelf: "stretch", margin: "0 4px" }} />
 
               {/* Artist B stats */}
               <div>
@@ -253,9 +253,9 @@ export default function ArtistBattle({ data }) {
                   ["Avg Tempo", `${artistB.avg_tempo.toFixed(0)} BPM`],
                   ["Avg Mood (Valence)", `${(artistB.avg_valence * 100).toFixed(0)}%`],
                 ].map(([k, v]) => (
-                  <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "7px 0", borderBottom: "1px solid #111", fontSize: 12 }}>
-                    <span style={{ color: "#666" }}>{k}</span>
-                    <span style={{ color: "#f0f0f0", maxWidth: 160, textAlign: "right", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{v}</span>
+                  <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "9px 0", borderBottom: "1px solid #1e1e1e", fontSize: 12 }}>
+                    <span style={{ color: "#909090" }}>{k}</span>
+                    <span style={{ color: "#f2f2f2", maxWidth: 160, textAlign: "right", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{v}</span>
                   </div>
                 ))}
               </div>

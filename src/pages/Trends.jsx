@@ -101,15 +101,15 @@ export default function Trends({ data }) {
             </button>
           ))}
         </div>
-        <ResponsiveContainer width="100%" height={320}>
+        <ResponsiveContainer width="100%" height={340}>
           <BarChart
             data={sortedByMetric}
-            margin={{ left: 80, right: 20, top: 0, bottom: 0 }}
+            margin={{ left: 88, right: 20, top: 0, bottom: 0 }}
             layout="vertical"
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#1a1a1a" horizontal={false} />
-            <XAxis type="number" tick={{ fill: "#666", fontSize: 10 }} />
-            <YAxis dataKey="genre" type="category" tick={{ fill: "#888", fontSize: 10 }} width={80} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#252525" horizontal={false} />
+            <XAxis type="number" tick={{ fill: "#888", fontSize: 10 }} axisLine={{ stroke: "#333" }} />
+            <YAxis dataKey="genre" type="category" tick={{ fill: "#aaa", fontSize: 10 }} width={88} axisLine={false} tickLine={false} />
             <Tooltip
               content={({ active, payload }) => {
                 if (!active || !payload?.length) return null;
@@ -135,8 +135,8 @@ export default function Trends({ data }) {
           <div className="card-sub">Radar comparison of top 8 genres across 5 audio dimensions</div>
           <ResponsiveContainer width="100%" height={340}>
             <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="70%">
-              <PolarGrid stroke="#1a1a1a" />
-              <PolarAngleAxis dataKey="metric" tick={{ fill: "#888", fontSize: 12 }} />
+              <PolarGrid stroke="#2a2a2a" />
+              <PolarAngleAxis dataKey="metric" tick={{ fill: "#aaa", fontSize: 12 }} />
               {top8_genres.map((g, i) => (
                 <Radar
                   key={g.genre}
@@ -160,23 +160,24 @@ export default function Trends({ data }) {
         <div className="card">
           <div className="card-title">Popularity vs Danceability</div>
           <div className="card-sub">Does a danceable genre guarantee popularity?</div>
-          <ResponsiveContainer width="100%" height={160}>
-            <BarChart data={genreByPop.slice(0,10)} margin={{ left: 60, right: 10, top: 0, bottom: 0 }} layout="vertical">
-              <CartesianGrid strokeDasharray="3 3" stroke="#1a1a1a" horizontal={false} />
-              <XAxis type="number" tick={{ fill: "#666", fontSize: 9 }} />
-              <YAxis dataKey="genre" type="category" tick={{ fill: "#888", fontSize: 9 }} width={60} />
+          <div style={{ fontSize: 10, color: "#777", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>Top 10 by Popularity</div>
+          <ResponsiveContainer width="100%" height={180}>
+            <BarChart data={genreByPop.slice(0,10)} margin={{ left: 65, right: 10, top: 0, bottom: 0 }} layout="vertical">
+              <CartesianGrid strokeDasharray="3 3" stroke="#252525" horizontal={false} />
+              <XAxis type="number" tick={{ fill: "#888", fontSize: 9 }} axisLine={{ stroke: "#333" }} />
+              <YAxis dataKey="genre" type="category" tick={{ fill: "#aaa", fontSize: 9 }} width={65} axisLine={false} tickLine={false} />
               <Tooltip content={<CustomTooltip />} />
               <Bar dataKey="avg_popularity" fill={GREEN} radius={[0,4,4,0]} name="Avg Popularity" />
             </BarChart>
           </ResponsiveContainer>
 
-          <div style={{ height: 16 }} />
-          <div className="card-sub" style={{ marginBottom: 8 }}>Top 10 by Danceability</div>
-          <ResponsiveContainer width="100%" height={160}>
-            <BarChart data={danceVsPop} margin={{ left: 60, right: 10, top: 0, bottom: 0 }} layout="vertical">
-              <CartesianGrid strokeDasharray="3 3" stroke="#1a1a1a" horizontal={false} />
-              <XAxis type="number" domain={[0,1]} tick={{ fill: "#666", fontSize: 9 }} />
-              <YAxis dataKey="genre" type="category" tick={{ fill: "#888", fontSize: 9 }} width={60} />
+          <div style={{ height: 20 }} />
+          <div style={{ fontSize: 10, color: "#777", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>Top 10 by Danceability</div>
+          <ResponsiveContainer width="100%" height={180}>
+            <BarChart data={danceVsPop} margin={{ left: 65, right: 10, top: 0, bottom: 0 }} layout="vertical">
+              <CartesianGrid strokeDasharray="3 3" stroke="#252525" horizontal={false} />
+              <XAxis type="number" domain={[0,1]} tick={{ fill: "#888", fontSize: 9 }} axisLine={{ stroke: "#333" }} />
+              <YAxis dataKey="genre" type="category" tick={{ fill: "#aaa", fontSize: 9 }} width={65} axisLine={false} tickLine={false} />
               <Tooltip content={<CustomTooltip />} />
               <Bar dataKey="avg_danceability" fill={BLUE} radius={[0,4,4,0]} name="Danceability" />
             </BarChart>
@@ -197,23 +198,23 @@ export default function Trends({ data }) {
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 11, fontFamily: "DM Mono, monospace" }}>
             <thead>
-              <tr style={{ borderBottom: "1px solid #222" }}>
+              <tr style={{ borderBottom: "1px solid #2a2a2a" }}>
                 {["Genre","Tracks","Popularity","Dance","Energy","Mood","Acousticness","Tempo"].map(h => (
-                  <th key={h} style={{ padding: "8px 12px", textAlign: "left", color: "#666", fontWeight: 400, textTransform: "uppercase", fontSize: 10, letterSpacing: "0.05em" }}>{h}</th>
+                  <th key={h} style={{ padding: "10px 12px", textAlign: "left", color: "#909090", fontWeight: 400, textTransform: "uppercase", fontSize: 10, letterSpacing: "0.06em" }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {genreByPop.map((g, i) => (
-                <tr key={g.genre} style={{ borderBottom: "1px solid #111", background: i % 2 === 0 ? "transparent" : "#111" }}>
-                  <td style={{ padding: "8px 12px", color: GREEN }}>{g.genre}</td>
-                  <td style={{ padding: "8px 12px", color: "#888" }}>{g.track_count}</td>
-                  <td style={{ padding: "8px 12px", color: "#f0f0f0" }}>{g.avg_popularity.toFixed(1)}</td>
-                  <td style={{ padding: "8px 12px", color: "#f0f0f0" }}>{g.avg_danceability.toFixed(2)}</td>
-                  <td style={{ padding: "8px 12px", color: "#f0f0f0" }}>{g.avg_energy.toFixed(2)}</td>
-                  <td style={{ padding: "8px 12px", color: "#f0f0f0" }}>{g.avg_valence.toFixed(2)}</td>
-                  <td style={{ padding: "8px 12px", color: "#f0f0f0" }}>{g.avg_acousticness.toFixed(2)}</td>
-                  <td style={{ padding: "8px 12px", color: "#f0f0f0" }}>{g.avg_tempo.toFixed(0)} BPM</td>
+                <tr key={g.genre} style={{ borderBottom: "1px solid #1e1e1e", background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.018)" }}>
+                  <td style={{ padding: "9px 12px", color: GREEN }}>{g.genre}</td>
+                  <td style={{ padding: "9px 12px", color: "#888" }}>{g.track_count}</td>
+                  <td style={{ padding: "9px 12px", color: "#f2f2f2" }}>{g.avg_popularity.toFixed(1)}</td>
+                  <td style={{ padding: "9px 12px", color: "#f2f2f2" }}>{g.avg_danceability.toFixed(2)}</td>
+                  <td style={{ padding: "9px 12px", color: "#f2f2f2" }}>{g.avg_energy.toFixed(2)}</td>
+                  <td style={{ padding: "9px 12px", color: "#f2f2f2" }}>{g.avg_valence.toFixed(2)}</td>
+                  <td style={{ padding: "9px 12px", color: "#f2f2f2" }}>{g.avg_acousticness.toFixed(2)}</td>
+                  <td style={{ padding: "9px 12px", color: "#f2f2f2" }}>{g.avg_tempo.toFixed(0)} BPM</td>
                 </tr>
               ))}
             </tbody>

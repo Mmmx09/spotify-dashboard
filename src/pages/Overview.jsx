@@ -81,8 +81,8 @@ export default function Overview({ data }) {
         </div>
       </div>
 
-      {/* Top tracks + Genre pie */}
-      <div className="grid-2">
+      {/* Top tracks + Genre bar */}
+      <div className="grid-2" style={{ gridTemplateColumns: "5fr 7fr" }}>
         <div className="card">
           <div className="card-title">Top 15 Tracks by Popularity</div>
           <div className="card-sub">Ranked by Spotify popularity score</div>
@@ -104,18 +104,19 @@ export default function Overview({ data }) {
         <div className="card">
           <div className="card-title">Genre Distribution</div>
           <div className="card-sub">Top 20 genres by track count · click to filter scatter</div>
-          <ResponsiveContainer width="100%" height={320}>
+          <ResponsiveContainer width="100%" height={380}>
             <BarChart
               data={top_genres}
               layout="vertical"
-              margin={{ left: 80, right: 20, top: 0, bottom: 0 }}
+              margin={{ left: 88, right: 20, top: 0, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray="3 3" stroke="#1a1a1a" horizontal={false} />
-              <XAxis type="number" tick={{ fill: "#666", fontSize: 10 }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#252525" horizontal={false} />
+              <XAxis type="number" tick={{ fill: "#888", fontSize: 10 }} axisLine={{ stroke: "#333" }} />
               <YAxis
                 dataKey="genre" type="category"
-                tick={{ fill: "#888", fontSize: 10 }}
-                width={80}
+                tick={{ fill: "#aaa", fontSize: 10 }}
+                width={88}
+                axisLine={false} tickLine={false}
               />
               <Tooltip content={<CustomTooltip />} />
               <Bar dataKey="track_count" radius={[0, 4, 4, 0]}>
@@ -153,18 +154,18 @@ export default function Overview({ data }) {
           Each dot = a track · dot size = popularity · color = genre ·
           {selectedGenre ? ` filtered: ${selectedGenre}` : " showing 3,000 tracks (popularity ≥ 20)"}
         </div>
-        <ResponsiveContainer width="100%" height={380}>
-          <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#1a1a1a" />
+        <ResponsiveContainer width="100%" height={400}>
+          <ScatterChart margin={{ top: 20, right: 20, bottom: 30, left: 30 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#252525" />
             <XAxis
               dataKey="energy" type="number" domain={[0, 1]} name="Energy"
-              tick={{ fill: "#666", fontSize: 10 }}
-              label={{ value: "Energy →", position: "insideBottomRight", fill: "#555", fontSize: 11 }}
+              tick={{ fill: "#888", fontSize: 10 }} axisLine={{ stroke: "#333" }}
+              label={{ value: "Energy →", position: "insideBottomRight", fill: "#777", fontSize: 11, dy: 20 }}
             />
             <YAxis
               dataKey="danceability" type="number" domain={[0, 1]} name="Danceability"
-              tick={{ fill: "#666", fontSize: 10 }}
-              label={{ value: "← Danceability", angle: -90, position: "insideLeft", fill: "#555", fontSize: 11 }}
+              tick={{ fill: "#888", fontSize: 10 }} axisLine={{ stroke: "#333" }}
+              label={{ value: "← Danceability", angle: -90, position: "insideLeft", fill: "#777", fontSize: 11, dx: -18 }}
             />
             <Tooltip content={<ScatterTooltip />} />
             <Scatter data={filteredScatter}>
