@@ -6,7 +6,7 @@
 
 ---
 
-## 📊 Project Overview
+## Project Overview
 
 This dashboard explores the question: **what makes a song popular?** Using Spotify's audio feature data, it visualizes relationships between musical attributes (energy, danceability, valence, tempo, acousticness) and popularity scores — revealing patterns across genres and artists.
 
@@ -14,7 +14,7 @@ Built as a personal portfolio project for the Power BI & Data Visualization cour
 
 ---
 
-## 🗂️ Star Schema (Data Model)
+## Star Schema (Data Model)
 
 The data is structured as a star schema with one fact table and three dimension tables:
 
@@ -54,7 +54,7 @@ The data is structured as a star schema with one fact table and three dimension 
 
 ---
 
-## 📱 Dashboard Pages
+## Dashboard Pages
 
 ### Page 1 — The Big Picture
 - **KPI cards**: total tracks, artists, genres, average popularity
@@ -75,7 +75,7 @@ The data is structured as a star schema with one fact table and three dimension 
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -87,7 +87,7 @@ The data is structured as a star schema with one fact table and three dimension 
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 spotify-dashboard/
@@ -106,7 +106,7 @@ spotify-dashboard/
 
 ---
 
-## 🗃️ Data Source
+## Data Source
 
 - **Dataset**: [Spotify Tracks Dataset](https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset) — Kaggle
 - **Raw data**: 114,000 rows × 21 columns
@@ -115,7 +115,7 @@ spotify-dashboard/
 
 ---
 
-## 🚀 Run Locally
+## Run Locally
 
 ```bash
 git clone https://github.com/Mmmx09/spotify-dashboard.git
@@ -128,7 +128,7 @@ Open [http://localhost:5173](http://localhost:5173)
 
 ---
 
-## 💡 Key Insights
+## Key Insights
 
 - High-popularity tracks cluster in the **high energy + high danceability** quadrant
 - **K-pop** and **pop-film** genres lead in average popularity despite not topping danceability
