@@ -60,7 +60,6 @@ function ArtistSelector({ label, artists, value, onChange, color }) {
 
 function similarity(a, b) {
   const dims = ["avg_danceability","avg_energy","avg_valence","avg_acousticness","avg_instrumentalness"];
-  // Normalize tempo to 0-1 (60-200 BPM range)
   const aVec = [...dims.map(d => a[d]), Math.max(0, Math.min(1, (a.avg_tempo - 60) / 140))];
   const bVec = [...dims.map(d => b[d]), Math.max(0, Math.min(1, (b.avg_tempo - 60) / 140))];
   const dot = aVec.reduce((s, v, i) => s + v * bVec[i], 0);
@@ -82,7 +81,6 @@ export default function ArtistBattle({ data }) {
   const [artistA, setArtistA] = useState(null);
   const [artistB, setArtistB] = useState(null);
 
-  // Defaults on first render
   useMemo(() => {
     if (!artistA && artist_stats.length) setArtistA(artist_stats[0]);
     if (!artistB && artist_stats.length) setArtistB(artist_stats[1]);

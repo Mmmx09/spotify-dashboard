@@ -29,7 +29,6 @@ const CustomTooltip = ({ active, payload, label }) => {
 export default function Trends({ data }) {
   const { genre_stats, top8_genres } = data;
 
-  // Build genre audio profile radar data
   const radarData = [
     { metric: "Dance", fullMark: 1 },
     { metric: "Energy", fullMark: 1 },
@@ -50,12 +49,10 @@ export default function Trends({ data }) {
     return obj;
   });
 
-  // Genre popularity sorted
   const genreByPop = [...genre_stats]
     .sort((a, b) => b.avg_popularity - a.avg_popularity)
     .slice(0, 20);
-
-  // Danceability vs popularity
+    
   const danceVsPop = [...genre_stats]
     .sort((a, b) => b.avg_danceability - a.avg_danceability)
     .slice(0, 20);
